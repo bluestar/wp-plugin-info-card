@@ -11,8 +11,8 @@ if ( !defined( 'ABSPATH' ) ) {
  * Register default plugin scripts
  ***************************************************************/
 function wppic_register_sripts() {
-	wp_enqueue_style( 'wppic-style', WPPIC_URL . 'css/wppic-style.min.css', NULL, NULL );
-	wp_enqueue_script( 'wppic-script', WPPIC_URL . 'js/wppic-script.min.js', array( 'jquery' ),  NULL, true );
+	wp_enqueue_style( 'wppic-style', WPPIC_URL . 'css/wppic-style.css', NULL, WPPIC_VERSION );
+	wp_enqueue_script( 'wppic-script', WPPIC_URL . 'js/wppic-script.min.js', array( 'jquery' ), WPPIC_VERSION, true );
 }
 add_action( 'wppic_enqueue_scripts', 'wppic_register_sripts' );
 
@@ -27,7 +27,7 @@ function wppic_print_sripts() {
 	var wppicAjax = { ajaxurl : "'.admin_url( 'admin-ajax.php' ).'" };
 	 // ]]></script>';
 
-	if( isset( $wppicSettings['enqueue'] ) && $wppicSettings['enqueue'] == true ){
+	if( isset( $wppicSettings[ 'enqueue' ] ) && $wppicSettings[ 'enqueue' ] == true ){
 
 		echo $wppicAjax;
 		do_action( 'wppic_enqueue_scripts' );
@@ -67,7 +67,8 @@ function wppic_shortcode_function( $atts, $content="" ) {
 		"scheme" 		=> '',	//color scheme : default|scheme1->scheme10 (default: empty)
 		"layout" 		=> '',	//card | flat
 		"custom" 		=> '',	//value to print : url|name|version|author|requires|rating|num_ratings|downloaded|last_updated|download_link
-	), $atts));
+	), $atts, 'wppic_default' ) );
+	//Use "shortcode_atts_wppic_default" filter to edit shortcode parameters default values or add your owns.
 	
 	global 	$wppicSettings;
 
@@ -112,7 +113,7 @@ function wppic_shortcode_function( $atts, $content="" ) {
 		$wppic_data = wppic_api_parser( $type, $slug, $expiration );
 		
 		if( !$wppic_data )
-		return '<strong>' . __('Item not found:', 'wppic-translate') . ' "' . $slug . '" ' . __('does not exist.', 'wppic-translate') . '</strong>';
+		return '<strong>' . __( 'Item not found:', 'wppic-translate' ) . ' "' . $slug . '" ' . __( 'does not exist.', 'wppic-translate' ) . '</strong>';
 	
 		if( !empty( $wppic_data->$custom ) )
 		$content .= $wppic_data->$custom;
@@ -121,7 +122,7 @@ function wppic_shortcode_function( $atts, $content="" ) {
 		
 		//Ajax required data
 		$ajaxData = '';
-		if($ajax == 'yes'){
+		if($ajax == 'yes' ){
 			$addClass[] = 'wp-pic-ajax';
 			$ajaxData = 'data-type="' . $type . '" data-slug="' . $slug . '" data-image="' . $image . '" data-expiration="' . $expiration . '"  data-layout="' . $layout . '" ';
 		}
@@ -131,7 +132,7 @@ function wppic_shortcode_function( $atts, $content="" ) {
 		if( $align == 'right' || $align == 'left' ) {
 			$align = 'float: ' . $align . '; ';
 		}
-		if( $align == 'center') {
+		if( $align == 'center' ) {
 			$alignCenter = true;
 			$align = '';
 		}
@@ -156,7 +157,7 @@ function wppic_shortcode_function( $atts, $content="" ) {
 
 		//Color scheme
 		if(empty($scheme)){
-			$scheme = $wppicSettings['colorscheme'];
+			$scheme = $wppicSettings[ 'colorscheme' ];
 			if(	$scheme == 'default' ){
 				$scheme = '';
 			}
@@ -164,7 +165,7 @@ function wppic_shortcode_function( $atts, $content="" ) {
 		$addClass[] = $scheme;
 
 		//Output
-		if($clear == 'before')
+		if($clear == 'before' )
 		$content .= '<div style="clear:both"></div>';
 		
 		if($alignCenter)
@@ -201,20 +202,20 @@ add_shortcode( 'wp-pic', 'wppic_shortcode_function' );
  ***************************************************************/
 function wppic_shortcode_content( $type=NULL, $slug=NULL, $image=NULL, $expiration=NULL, $layout=NULL ){
 	
-	if( !empty( $_POST['type'] ) ){
-		$type = $_POST['type'];
+	if( !empty( $_POST[ 'type' ] ) ){
+		$type = $_POST[ 'type' ];
 	} 
-	if( !empty( $_POST['slug'] ) ){
-		$slug = $_POST['slug'];
+	if( !empty( $_POST[ 'slug' ] ) ){
+		$slug = $_POST[ 'slug' ];
 	} 
-	if( !empty( $_POST['image'] ) ){
-		$image = $_POST['image'];
+	if( !empty( $_POST[ 'image' ] ) ){
+		$image = $_POST[ 'image' ];
 	} 
-	if( !empty( $_POST['expiration'] ) ){
-		$expiration = $_POST['expiration'];
+	if( !empty( $_POST[ 'expiration' ] ) ){
+		$expiration = $_POST[ 'expiration' ];
 	} 
-	if( !empty( $_POST['layout'] ) ){
-		$layout = $_POST['layout'];
+	if( !empty( $_POST[ 'layout' ] ) ){
+		$layout = $_POST[ 'layout' ];
 	} 
 
 	$type = esc_html( $type );
@@ -232,7 +233,7 @@ function wppic_shortcode_content( $type=NULL, $slug=NULL, $image=NULL, $expirati
 		$error = '<div class="wp-pic-flip" style="display: none;">';
 			$error .= '<div class="wp-pic-face wp-pic-front error">';
 
-				$error .=  '<span class="wp-pic-no-plugin">' . __('Item not found:', 'wppic-translate') . '</br><i>"' . $slug . '"</i></br>' . __('does not exist.', 'wppic-translate') . '</span>';
+				$error .=  '<span class="wp-pic-no-plugin">' . __( 'Item not found:', 'wppic-translate' ) . '</br><i>"' . $slug . '"</i></br>' . __( 'does not exist.', 'wppic-translate' ) . '</span>';
 				$error .=  	'<div class="monster-wrapper">
 								<div class="eye-left"></div>
 								<div class="eye-right"></div>
@@ -247,7 +248,7 @@ function wppic_shortcode_content( $type=NULL, $slug=NULL, $image=NULL, $expirati
 			$error .= '</div>';
 		$error .= '</div>';
 		
-		if( !empty( $_POST['slug'] ) ) {
+		if( !empty( $_POST[ 'slug' ] ) ) {
 			echo $error;
 			die();
 		} else {
@@ -263,9 +264,9 @@ function wppic_shortcode_content( $type=NULL, $slug=NULL, $image=NULL, $expirati
 	//Prepare the credit
 	global 	$wppicSettings;
 	$credit = '';
-	if( isset( $wppicSettings['credit'] ) && $wppicSettings['credit'] == true ){
+	if( isset( $wppicSettings[ 'credit' ] ) && $wppicSettings[ 'credit' ] == true ){
 		$credit .= '<a class="wp-pic-credit" href="http://b-website.com/wp-plugin-info-card-for-wordpress" target="_blank" data-tooltip="';
-		$credit .= __('This card has been generated with WP Plugin Info Card', 'wppic-translate');
+		$credit .= __( 'This card has been generated with WP Plugin Info Card', 'wppic-translate' );
 		$credit .= '"></a>';
 	}
 	$wppic_data->credit = $credit;
@@ -276,7 +277,7 @@ function wppic_shortcode_content( $type=NULL, $slug=NULL, $image=NULL, $expirati
 	$content = apply_filters( 'wppic_add_template', $content, array( $type, $wppic_data, $image, $layout ) );
 	
 	
-	if(!empty($_POST['slug'])) {
+	if(!empty($_POST[ 'slug' ])) {
 		echo $content;
 		die();
 	} else {

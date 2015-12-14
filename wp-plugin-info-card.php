@@ -5,7 +5,7 @@
  * Description: WP Plugin Info Card displays plugins & themes identity cards in a beautiful box with a smooth rotation effect using WordPress.org Plugin API & WordPress.org Theme API. Dashboard widget included.
  * Author: Brice CAPOBIANCO
  * Author URI: http://b-website.com/
- * Version: 2.4.1
+ * Version: 2.4.2
  * Domain Path: /langs
  * Text Domain: wppic-translate
  */
@@ -22,22 +22,25 @@ if ( !defined( 'ABSPATH' ) ) {
 /***************************************************************
  * Define constants
  ***************************************************************/
-if ( !defined('WPPIC_PATH' ) ) {
+if ( !defined( 'WPPIC_VERSION' ) ) {	
+    define( 'WPPIC_VERSION', '2.4.2' );
+}
+if ( !defined( 'WPPIC_PATH' ) ) {
 	define( 'WPPIC_PATH', plugin_dir_path( __FILE__ ) ); 
 }
-if ( !defined('WPPIC_URL' ) ) {
+if ( !defined( 'WPPIC_URL' ) ) {
 	define( 'WPPIC_URL', plugin_dir_url( __FILE__ ) ); 
 }
-if ( !defined('WPPIC_BASE' ) ) {
+if ( !defined( 'WPPIC_BASE' ) ) {
 	define( 'WPPIC_BASE', plugin_basename( __FILE__ ) ); 
 }
-if ( !defined('WPPIC_NAME' ) ) {
+if ( !defined( 'WPPIC_NAME' ) ) {
 	define( 'WPPIC_NAME', 'WP Plugin Info Card' ); 
 }
-if ( !defined('WPPIC_NAME_FULL' ) ) {
+if ( !defined( 'WPPIC_NAME_FULL' ) ) {
 	define( 'WPPIC_NAME_FULL', 'WP Plugin Info Card by b*web' ); 
 }
-if ( !defined('WPPIC_ID' ) ) {
+if ( !defined( 'WPPIC_ID' ) ) {
 	define( 'WPPIC_ID', 'wp-plugin-info-card' ); 
 }
 
@@ -46,10 +49,10 @@ if ( !defined('WPPIC_ID' ) ) {
  * Get options
  ***************************************************************/
 global 	$wppicSettings;
-$wppicSettings = get_option('wppic_settings');
+$wppicSettings = get_option( 'wppic_settings' );
 
 global 	$wppicDateFormat;
-$wppicDateFormat = get_option('date_format');
+$wppicDateFormat = get_option( 'date_format' );
 
 
 /***************************************************************

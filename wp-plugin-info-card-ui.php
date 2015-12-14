@@ -21,15 +21,15 @@ function wppic_add_mce_button() {
 		add_filter( 'mce_buttons', 'wppic_register_mce_button' );
 		
 		// Load stylesheet for tinyMCE button only
-		wp_enqueue_style( 'wppic-admin-css', WPPIC_URL . 'css/wppic-admin-style.css', array(), '2.4.1' );
-		wp_enqueue_script( 'wppic-ui-scripts', WPPIC_URL . 'js/wppic-ui-scripts.js', array( 'jquery' ), '2.4.1' );
+		wp_enqueue_style( 'wppic-admin-css', WPPIC_URL . 'css/wppic-admin-style.css', array(), WPPIC_VERSION );
+		wp_enqueue_script( 'wppic-ui-scripts', WPPIC_URL . 'js/wppic-ui-scripts.js', array( 'jquery' ), WPPIC_VERSION );
 
 		//Define additionnal hookable MCE parameters
 		$mceAddParam = array(
 				'types' => array(),
 				'layouts' => array(
-					array( 'text' => __('Card (default)', 'wppic-translate'), 'value' => '' ),
-					array( 'text' => __('Large', 'wppic-translate'), 'value' => 'large' )
+					array( 'text' => __( 'Card (default)', 'wppic-translate' ), 'value' => '' ),
+					array( 'text' => __( 'Large', 'wppic-translate' ), 'value' => 'large' )
 				)
 
 			);
@@ -43,7 +43,7 @@ function wppic_add_mce_button() {
 	}
 	
 }
-add_action('admin_head', 'wppic_add_mce_button');
+add_action( 'admin_head', 'wppic_add_mce_button' );
 
 
 /***************************************************************
@@ -60,7 +60,7 @@ add_filter( 'mce_external_languages', 'wppic_add_tinymce_lang', 10, 1 );
  * Load custom js options - TinyMCE API
  ***************************************************************/ 
 function wppic_tinymce_plugin( $plugin_array ) {
-	$plugin_array['wppic_mce_button'] = WPPIC_URL . 'js/wppic-ui-mce.js';
+	$plugin_array[ 'wppic_mce_button' ] = WPPIC_URL . 'js/wppic-ui-mce.js';
 	return $plugin_array;
 }
 

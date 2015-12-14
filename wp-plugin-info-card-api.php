@@ -31,7 +31,6 @@ function wppic_api_parser( $type, $slug, $expiration = 720, $widget = NULL ){
 		
 		//Transient duration  def:12houres
 		set_transient( 'wppic_'. $widget . $type . '_' . preg_replace( '/\-/', '_', $slug ), $wppic_data, $expiration*60 );
-	}
-	
+	}	
 	return $wppic_data;
 }

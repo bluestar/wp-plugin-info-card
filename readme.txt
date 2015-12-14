@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: API, plugin, card, blog, developper, design, dashboard, shortcode, ajax, WordPress, plugin API, CSS, rotate, flip card, awesome, UX, ui, showcase, theme API, themes, theme, jquery, Envato
 Requires at least: 3.7
 Tested up to: 4.3
-Stable tag: 2.4.1
+Stable tag: 2.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,12 @@ Yes, it is compatible with most recent browsers, except for Opera (but IE10+ wor
 
 
 == Changelog ==
+
+= 2.4.2 =
+* Make the shortcode_atts_wppic_default hook available thanks to the shortcode_atts() third parameter
+* Fix a minor CSS bug on the large layout height reported by @posykrat: https://wordpress.org/support/topic/height-100-for-large-display
+* Best compliance with WordPress coding standards
+* New WPPIC_VERSION constant. Will ease improving refresh browser caching after plugin updates (mainly on CSS and JS files)...
 
 = 2.4.1 =
 * Replace jQuery live() function by on() function to prevent JS error (fix an issue with Visual composer)
