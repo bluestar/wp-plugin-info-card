@@ -5,7 +5,7 @@
  * Description: WP Plugin Info Card displays plugins & themes identity cards in a beautiful box with a smooth rotation effect using WordPress.org Plugin API & WordPress.org Theme API. Dashboard widget included.
  * Author: Brice CAPOBIANCO
  * Author URI: http://b-website.com/
- * Version: 2.4.2
+ * Version: 2.4.3
  * Domain Path: /langs
  * Text Domain: wppic-translate
  */
@@ -23,7 +23,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * Define constants
  ***************************************************************/
 if ( !defined( 'WPPIC_VERSION' ) ) {	
-    define( 'WPPIC_VERSION', '2.4.2' );
+    define( 'WPPIC_VERSION', '2.4.3' );
 }
 if ( !defined( 'WPPIC_PATH' ) ) {
 	define( 'WPPIC_PATH', plugin_dir_path( __FILE__ ) ); 
@@ -69,7 +69,7 @@ foreach( $wppicFiles as $wppicFile ){
  ***************************************************************/
 function wppic_load_textdomain() {
 	$path = dirname( plugin_basename( __FILE__ ) ) . '/langs/';
-	load_plugin_textdomain( 'wppic-translate', false, $path );
+	load_plugin_textdomain( 'wppic-translate', FALSE, $path );
 }
 add_action( 'init', 'wppic_load_textdomain' );
 
@@ -91,7 +91,7 @@ function wppic_meta_links( $links, $file ) {
 	if ( $file === 'wp-plugin-info-card/wp-plugin-info-card.php' ) {
 		$links[] = '<a href="http://b-website.com/wp-plugin-info-card-for-wordpress" target="_blank" title="'. __( 'Documentation and examples', 'wppic-translate' ) .'"><strong>'. __( 'Documentation and examples', 'wppic-translate' ) .'</strong></a>';
 		$links[] = '<a href="http://b-website.com/category/plugins" target="_blank" title="'. __( 'More plugins by b*web', 'wppic-translate' ) .'">'. __( 'More plugins by b*web', 'wppic-translate' ) .'</a>';
-		$links[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8" target="_blank" title="' . __( 'Donate to this plugin &#187;' ) . '"><strong>' . __( 'Donate to this plugin &#187;' ) . '</strong></a>';
+		$links[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8" target="_blank" title="' . __( 'Donate', 'wppic-translate' ) . '"><strong>' . __( 'Donate', 'wppic-translate' ) . '</strong></a>';
 	}
 	return $links;
 }
@@ -125,7 +125,7 @@ function wppic_delete_transients(){
 		WHERE option_name LIKE '_transient_wppic_%'"
 	);
 	foreach( ( array ) $wppic_transients as $singleTransient ){
-		delete_transient( str_replace( "_transient_", "", $singleTransient->name ) );
+		delete_transient( str_replace( '_transient_', '', $singleTransient->name ) );
 	}
 }
 

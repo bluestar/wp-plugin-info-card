@@ -31,7 +31,7 @@ function wppic_create_menu() {
 	//Enqueue sripts and style
 	add_action( 'admin_print_scripts-' . $admin_page, 'wppic_admin_scripts' );
 	add_action( 'admin_print_styles-' . $admin_page, 'wppic_admin_css' );
-
+	
 }
 add_action( 'admin_menu', 'wppic_create_menu' );
 
@@ -197,7 +197,7 @@ function wppic_settings_page() {
 						<div class="inside">
                             <table class="form-table">
                                 <tr valign="top">
-                                    <?php do_settings_sections(WPPIC_ID . 'options' ) ?>
+                                    <?php do_settings_sections( WPPIC_ID . 'options' ) ?>
                                 </tr>
                             </table>
                             <?php submit_button() ?>
@@ -210,7 +210,7 @@ function wppic_settings_page() {
 						<div class="inside">
                             <table class="form-table">
                                 <tr valign="top">
-                                    <?php do_settings_sections(WPPIC_ID . 'widget' ) ?>
+                                    <?php do_settings_sections( WPPIC_ID . 'widget' ) ?>
                                 </tr>
                             </table>
                             <?php submit_button() ?>
@@ -258,8 +258,8 @@ function wppic_color_scheme() {
 function wppic_checkbox( $args ) {
 	global 	$wppicSettings;
 	$content = '<td>';
-		$content .= '<input type="checkbox" id="' . $args[ 'id' ] . '" name="wppic_settings[ ' . $args[ 'name' ] . ' ]"  value="1" ';
-		if( isset($wppicSettings[ $args[ 'name' ] ] ) ) {
+		$content .= '<input type="checkbox" id="' . $args[ 'id' ] . '" name="wppic_settings[' . $args[ 'name' ] . ']"  value="1" ';
+		if( isset( $wppicSettings[ $args[ 'name' ] ] ) ) {
 			$content .= checked( 1, $wppicSettings[ $args[ 'name' ] ], false );
 		}
 		$content .= '/>';
@@ -286,7 +286,7 @@ function wppic_list_form() {
 				$content .= '<ul id="wppic-' . $wppicItemForm[0] . '" class="wppic-list">';
 						if( !empty( $wppicSettings[ $wppicItemForm[0] ] ) ){
 							foreach($wppicSettings[ $wppicItemForm[0] ] as $item){
-								$content .= '<li class="wppic-dd"><input type="text" name="wppic_settings[ ' . $wppicItemForm[0] . ' ][]"  value="' . $item . '"><span class="wppic-remove-field" title="remove"></span></li>';
+								$content .= '<li class="wppic-dd"><input type="text" name="wppic_settings[' . $wppicItemForm[0] . '][]"  value="' . $item . '"><span class="wppic-remove-field" title="remove"></span></li>';
 							}
 						}
 				$content .= '</ul>';
@@ -304,13 +304,13 @@ function wppic_list_form() {
 /***************************************************************
  * Form validator
  ***************************************************************/
-function wppic_validate($input) {
+function wppic_validate( $input ) {
 	if( isset( $input[ 'list' ] ) && !empty( $input[ 'list' ] ) ){
 		
 		$validationList = array();
 		$validationList = apply_filters( 'wppic_add_list_valdiation', $validationList );
 		
-		foreach($validationList as $element){		
+		foreach( $validationList as $element ){		
 			if( isset( $input[ $element[0] ] ) && !empty( $input[ $element[0] ] ) ){
 				
 				//remove duplicate 
@@ -321,7 +321,7 @@ function wppic_validate($input) {
 						if( !empty ( $item ) ){
 							add_settings_error(
 								'wppic-admin-notice',
-								'',
+								esc_attr( 'wppic-error' ),
 								'<i>"' . $item . '"</i> ' . $element[1],
 								'error'
 							);
@@ -333,6 +333,7 @@ function wppic_validate($input) {
 			}
 		}
 	}
+
 	return $input;
 }
 
