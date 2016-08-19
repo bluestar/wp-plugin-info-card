@@ -29,7 +29,8 @@ function wppic_add_mce_button() {
 				'types' => array(),
 				'layouts' => array(
 					array( 'text' => __( 'Card (default)', 'wppic-translate' ), 'value' => '' ),
-					array( 'text' => __( 'Large', 'wppic-translate' ), 'value' => 'large' )
+					array( 'text' => __( 'Large', 'wppic-translate' ), 'value' => 'large' ),
+					array( 'text' => __( 'WordPress', 'wppic-translate' ), 'value' => 'wordpress' )
 				)
 
 			);

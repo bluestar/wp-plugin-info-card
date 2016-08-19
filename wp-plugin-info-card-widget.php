@@ -120,7 +120,7 @@ function wppic_widget_render( $type=NULL, $slugs=NULL ){
 
 	if( !empty( $slugs ) ) {
 		foreach( $slugs as $slug){
-			$wppic_data = wppic_api_parser( $type, $slug, '5', true );
+			$wppic_data = wppic_api_parser( $type, $slug, '5', 'widget' );
 
 			if( !$wppic_data ){
 

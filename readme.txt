@@ -3,17 +3,20 @@ Contributors: briKou
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8
 Tags: API, plugin, card, blog, developper, design, dashboard, shortcode, ajax, WordPress, plugin API, CSS, rotate, flip card, awesome, UX, ui, showcase, theme API, themes, theme, jquery, Envato
 Requires at least: 3.7
-Tested up to: 4.4.2
-Stable tag: 2.4.3
+Tested up to: 4.6
+Stable tag: 2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
  
 WPPIC displays plugins & themes data in a beautiful box with a smooth rotation effect using WP Plugin & Theme APIs. Dashboard widget included.
 
+
+
 == Description ==
 
 [PREMIUM ADD-ON - WP Envato Affiliate Card](http://b-website.com/wp-envato-affiliate-card-powered-envato-market-api "WP Envato Affiliate Card")
+
 
 
 = How does it work? =
@@ -33,23 +36,19 @@ It is perfect to keep track of your own plugins!
 This plugin uses the TinyMCE API to improve UI and make inserting shortcodes easier!
 
 
-* NEW feature (added in 2.2): Layout option added, LARGE template added.
-* NEW feature (added in 2.2): You may now provide a list of slugs (comma-separated) in your shortcode slug parameter, WPPIC will randomly choose one item from the list on each page refresh.
-* NEW Beta feature (added in 2.2): You may now easily overload the plugin rendering. You need to create a new "wppic-templates" folder into your theme folder, then copy the template you want to overload from the WP Plugin Info Card "wppic-templates" folder.
-* NEW Beta feature (added in 2.2): You may now create your own template file. You need to create a new "wppic-templates" folder into your theme folder, then copy the template file "wppic-template-plugin-large.php" or "wppic-template-theme-large.php" from the WP Plugin Info Card '/wppic-templates' folder. Rename the file as "wppic-template-plugin-NEWTEMPLATE.php" or "wppic-template-theme-NEWTEMPLATE.php", edit it as you go, and add your own CSS rules. Finally, call your new template by adding the following parameter in your shortcode: layout="NEWTEMPLATE"
-
-
-
 **Please ask for help or report bugs if anything goes wrong. It is the best way to make the community benefit!**
+
 
 [CHECK OUT THE DEMO](http://b-website.com/wp-plugin-info-card-for-wordpress "Try It!")
 
 
-= Shortcode parameters =
+
+
+= [wp-pic] Shortcode parameters =
 
 * **type:** plugin, theme (default: plugin)
 * **slug:** plugin slug name - Please refer to the plugin/theme URL on wordpress.org to determine its slug: https://wordpress.org/plugins/THE-SLUG/
-* **layout:** template layout to use - Default is "card" so you may leave this parameter empty. Available layouts are: card, large (default: empty)
+* **layout:** template layout to use - Default is "card" so you may leave this parameter empty. Available layouts are: card, large & wordpress (default: empty)
 * **scheme:** card color scheme: scheme1 to scheme10 (default: default color scheme defined in admin)
 * **image:** image url to replace the default image or logo(default: empty)
 * **align:** center, left, right (default: empty)
@@ -62,8 +61,6 @@ This plugin uses the TinyMCE API to improve UI and make inserting shortcodes eas
 	* For plugins: url, name, icons, banners, version, author, requires, rating, num_ratings, downloaded, last_updated, download_link	
 	* For themes: url, name, version, author, screenshot_url, rating, num_ratings, downloaded, last_updated, homepage, download_link
 
-
-logo & banner parameters are dreprecated - not needed anymore!
 
 
 = Examples =
@@ -78,7 +75,61 @@ The slug is the only required parameter for plugin. You have to set the "type" p
 `[wp-pic slug="wp-plugin-info-card" custom="name" ] has been downloaded [wp-pic slug="wp-plugin-info-card" custom="downloaded" ] times!`
 
 
+
 [FULL DOCUMENTATION AND EXAMPLES](http://b-website.com/wp-plugin-info-card-for-wordpress "Documentation & examples")
+
+
+
+= [wp-pic-query] Query shortcode parameters - NEW (added in 2.5) =
+
+* **search:**  A search term. Default empty.
+* **tag:** Tag to filter themes/plugins. Comma separated list. Default empty.
+* **author:** Username of an author to filter themes/plugins. Default empty.
+* **user:** Username to query for their favorites. Default empty.
+* **browse:** Browse view: 'featured', 'popular', 'updated', 'favorites'.
+* **per_page:** Number of themes/plugins per query (page). Default 24.
+* **cols:** Columns layout to use: '2', '3'. Default empty (none).
+
+**Then use the [wp-pic] shortcode parameters**
+
+
+
+
+= Examples =
+
+Plugin by author (automattic) limit to 6 items with a two columns render
+`[wp-pic-query author="automattic" per_page="6" type="plugin" layout="wordpress" align="center" ajax="yes" cols="2"]`
+
+Plugin by user favorits collection limit to 4 with a two columns render
+`[wp-pic-query user="briKou" per_page="4" type="plugin" layout="wordpress" align="center" ajax="yes" cols="2"]`
+
+Popular plugins limit to 6 items with whitout column
+`[wp-pic-query browse="popular" per_page="6" type="plugin" layout="card" align="left" margin="1rem" ajax="yes" cols="1"]`
+
+Themes by author (wordpressdotorg) with a two columns render
+`[wp-pic-query author="wordpressdotorg" per_page="2" type="theme" layout="card" align="center" clear="after" ajax="yes" cols="2"]`
+
+Themes by tags (dark & four-columns) limit to 4 items with a two columns render
+`[wp-pic-query tag="dark,four-columns" per_page="4" type="theme" layout="wordpress" align="center" ajax="yes" cols="2"]`
+
+Themes by tag (buddypress)  limit to 2 items without columns
+`[wp-pic-query tag="buddypress" per_page="2" type="theme" layout="large" align="center" align="center"]`
+
+Themes by search term limit to 4 items with a two columns render
+`[wp-pic-query search="cool" per_page="4" type="theme" layout="wordpress" align="center" ajax="yes" cols="2"]`
+
+
+
+[FULL DOCUMENTATION AND EXAMPLES](http://b-website.com/wp-plugin-info-card-for-wordpress "Documentation & examples")
+
+
+
+= Other features =
+
+* You can provide a list of slugs (comma-separated) in your shortcode slug parameter, WPPIC will randomly choose one item from the list on each page refresh.
+* You cane asily overload the plugin rendering. You need to create a new "wppic-templates" folder into your theme folder, then copy the template you want to overload from the WP Plugin Info Card "wppic-templates" folder.
+* You can create your own template file. You need to create a new "wppic-templates" folder into your theme folder, then copy the template file "wppic-template-plugin-large.php" or "wppic-template-theme-large.php" from the WP Plugin Info Card '/wppic-templates' folder. Rename the file as "wppic-template-plugin-NEWTEMPLATE.php" or "wppic-template-theme-NEWTEMPLATE.php", edit it as you go, and add your own CSS rules. Finally, call your new template by adding the following parameter in your shortcode: layout="NEWTEMPLATE"
+
 
 
 
@@ -91,6 +142,8 @@ The slug is the only required parameter for plugin. You have to set the "type" p
 * Serbo-Croatian - Thanks to Andrijana Nikolic from [Web Hosting Geeks](http://webhostinggeeks.com/ "Web Hosting Geeks")
 
 Become a translator and send me your translation! [Contact-me](http://b-website.com/contact "Contact")
+
+
 
 
 == Installation ==
@@ -106,6 +159,8 @@ Become a translator and send me your translation! [Contact-me](http://b-website.
 Yes, it is compatible with most recent browsers, except for Opera (but IE10+ works!)
 
 
+
+
 == Screenshots ==
 
 1. Plugin identity card
@@ -117,9 +172,30 @@ Yes, it is compatible with most recent browsers, except for Opera (but IE10+ wor
 7. Theme with the large layout
 8. Plugin with the large layout
 9. Plugin with the large layout in the sidebar
+10. WordPress layout with a plugin card
+11. WordPress layout with themes and 2 columns
+
+
 
 
 == Changelog ==
+
+= 2.5 =
+* New: Add "WordPress" layouts for plugins and themes
+* New: Add the ability to use custom queries to retrieve plugins & themes by tags, author, etc. (new shortcode: wp-pic-query) 
+* New: The new shortcode wp-pic-query is able to output items in a grid system (1, 2 or 3 cols).
+* New: use wppic_api_query hook to perform query customization
+* New: use wppic_query_content to filter what wp-pic-query shortcode returns 
+* Fix translations + add new string to translations files
+* Fix live preview URL for themes
+* Fix typo on themes layouts
+* Fix a warning in the theme large layout
+* Improve API parser (store more data from the API). Eg: active installs, description
+* Improve CSS
+* Improve register_activation_hook and register_uninstall_hook call for better performance
+* Enqueue minified CSS (forget in the previous version)
+* Update french translation
+* Tested on WP 4.6 with success!
 
 = 2.4.3 =
 * Fix an issue on options save in the admin page

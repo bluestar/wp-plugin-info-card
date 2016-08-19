@@ -1,7 +1,8 @@
 <?php
 /***************************************************************
  * $wppic_data Object contain the following values: 
- * url, name, icons, banners, version, author, requires, rating, num_ratings, downloaded, last_updated, download_link
+ * url, name, slug, version, author, author_profile, contributors, requires, tested, requires, rating, num_ratings, ratings,  
+ * active_installs, downloaded, last_updated, last_updated_mk, added, homepage, short_description, download_link, donate_link, icons, banners
  ***************************************************************/
 
 //Fix for requiered version with extra info. EG: WP 3.9, BP 2.1+

@@ -26,31 +26,50 @@ function wppic_plugin_api_parser( $wppic_data, $type, $slug ){
 
 	if ( $type == 'plugin' ) {
 		
-		require_once(ABSPATH . 'wp-admin/includes/plugin-install.php' );
+		require_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
 		$plugin_info = $api = plugins_api( 'plugin_information', array(
-			'slug' => $slug,
-			'is_ssl' => is_ssl(),
-			'fields' => array( 'sections' => false, 'tags' => false , 'icons' => true, 'banners' => true )
+			'slug' 		=> $slug,
+			'is_ssl' 	=> is_ssl(),
+			'fields' 	=> array( 
+				'sections' 			=> false, 
+				'tags' 				=> false,
+				'short_description' => true,
+				'icons' 			=> true, 
+				'banners' 			=> true,
+				'reviews' 			=> false,
+				'active_installs' 	=> true
+			)
 		) );
-	
+
 		if( !is_wp_error( $plugin_info ) ){
 			$wppic_data  = (object) array( 
-				'slug' 			=> $slug,
-				'url' 			=> 'https://wordpress.org/plugins/'.$slug.'/',
-				'name' 			=> $plugin_info->name,
-				'icons' 		=> $plugin_info->icons,
-				'banners' 		=> $plugin_info->banners,
-				'version' 		=> $plugin_info->version,
-				'author' 		=> $plugin_info->author,
-				'requires' 		=> $plugin_info->requires,
-				'rating' 		=> $plugin_info->rating,
-				'num_ratings' 	=> $plugin_info->num_ratings,
-				'downloaded' 	=> number_format($plugin_info->downloaded, 0, ',', ',' ),
-				'last_updated' 	=> $plugin_info->last_updated,
-				'download_link' => $plugin_info->download_link,
+				'url' 				=> 'https://wordpress.org/plugins/'.$slug.'/', //depreciated since 2.5
+				'name' 				=> $plugin_info->name,
+				'slug' 				=> $slug,
+				'version' 			=> $plugin_info->version,
+				'author' 			=> $plugin_info->author,
+				'author_profile'	=> $plugin_info->author_profile,
+				'contributors'		=> $plugin_info->contributors,
+				'requires' 			=> $plugin_info->requires,
+				'tested' 			=> $plugin_info->tested,
+				'requires' 			=> $plugin_info->requires,
+				'rating' 			=> $plugin_info->rating,
+				'num_ratings' 		=> $plugin_info->num_ratings,
+				'ratings'			=> $plugin_info->ratings,
+				'active_installs' 	=> $plugin_info->active_installs,
+				'downloaded' 		=> number_format( $plugin_info->downloaded, 0, ',', ',' ),
+				'last_updated' 		=> $plugin_info->last_updated,
+				'last_updated_mk' 	=> $plugin_info->last_updated,
+				'added' 			=> $plugin_info->added,
+				'homepage' 			=> $plugin_info->homepage,
+				'short_description' => $plugin_info->short_description,
+				'download_link' 	=> $plugin_info->download_link,
+				'donate_link' 		=> $plugin_info->donate_link,
+				'icons' 			=> $plugin_info->icons,
+				'banners' 			=> $plugin_info->banners,
 			);
 		}
-	
+
 	}
 	
 	return $wppic_data;
@@ -62,7 +81,6 @@ function wppic_plugin_api_parser( $wppic_data, $type, $slug ){
  * Plugin shortcode template prepare
  ***************************************************************/
 function wppic_plugin_template( $content, $data ){
-	
 	$type = $data[0];
 	$wppic_data = $data[1];
 	$image = $data[2];

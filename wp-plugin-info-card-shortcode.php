@@ -11,7 +11,8 @@ if ( !defined( 'ABSPATH' ) ) {
  * Register default plugin scripts
  ***************************************************************/
 function wppic_register_sripts() {
-	wp_enqueue_style( 'wppic-style', WPPIC_URL . 'css/wppic-style.css', NULL, WPPIC_VERSION );
+	wp_enqueue_style( 'wppic-style', WPPIC_URL . 'css/wppic-style.min.css', NULL, WPPIC_VERSION );
+    wp_enqueue_style( 'dashicons' );
 	wp_enqueue_script( 'wppic-script', WPPIC_URL . 'js/wppic-script.min.js', array( 'jquery' ), WPPIC_VERSION, true );
 }
 add_action( 'wppic_enqueue_scripts', 'wppic_register_sripts' );
@@ -65,7 +66,7 @@ function wppic_shortcode_function( $atts, $content="" ) {
 		"expiration" 	=> '',	//transient duration in minutes - 0 for never expires
 		"ajax" 			=> '',	//load plugin data async whith ajax: yes|no (default: no)
 		"scheme" 		=> '',	//color scheme : default|scheme1->scheme10 (default: empty)
-		"layout" 		=> '',	//card | flat
+		"layout" 		=> '',	//card|flat|wordpress
 		"custom" 		=> '',	//value to print : url|name|version|author|requires|rating|num_ratings|downloaded|last_updated|download_link
 	), $atts, 'wppic_default' ) );
 	//Use "shortcode_atts_wppic_default" filter to edit shortcode parameters default values or add your owns.

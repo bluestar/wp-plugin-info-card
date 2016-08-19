@@ -20,7 +20,7 @@ function wppic_tinymce_translation() {
 		'type' 			=> __( 'Type of data to retrieve', 'wppic-translate' ),
 		'slug' 			=> __( 'The Slug/ID', 'wppic-translate' ),
 		'layout' 		=> __( 'Layout structure', 'wppic-translate' ),
-		'scheme' 		=> __( 'Color scheme', 'wppic-translate' ),
+		'scheme' 		=> __( 'Color scheme (not available for WordPress layout)', 'wppic-translate' ),
 		'image' 		=> __( 'Custom image URL', 'wppic-translate' ),
 		'align' 		=> __( 'Cards alignment', 'wppic-translate' ),
 		'containerid' 	=> __( 'Custom container ID', 'wppic-translate' ),

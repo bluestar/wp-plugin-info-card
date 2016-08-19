@@ -23,30 +23,35 @@ add_filter( 'wppic_add_widget_item', 'wppic_theme_widget_item', 9, 3 );
  * Fetching themes data with WordPress.org Theme API
  ***************************************************************/
 function wppic_theme_api_parser( $wppic_data, $type, $slug ){
-
 	if ( $type == 'theme' ) {
 
 		require_once( ABSPATH . 'wp-admin/includes/theme.php' );
 		$theme_info = themes_api( 'theme_information', array(
-				'slug' => $slug,
-				'fields' => array( 'sections' => false, 'tags' => false ) 
+				'slug' 		=> $slug,
+				'fields' 	=> array( 
+					'sections' 	=> false,
+					'tags' 		=> false 
+				) 
 			) 
 		);
-
+		
 		if( !is_wp_error( $theme_info ) ){
 			$wppic_data  = (object) array( 
-				'slug' 			=> $slug,
-				'url'			=> 'https://wordpress.org/themes/'.$slug.'/',
-				'name' 			=> $theme_info->name,
-				'version' 		=> $theme_info->version,
-				'author' 		=> '<a href="https://profiles.wordpress.org/' . $theme_info->author . '/" target="_blanck" title="' . $theme_info->author . '">' . $theme_info->author . '</a>',
-				'screenshot_url'=> $theme_info->screenshot_url,
-				'rating' 		=> $theme_info->rating,
-				'num_ratings' 	=> $theme_info->num_ratings,
-				'downloaded' 	=> number_format($theme_info->downloaded, 0, ',', ',' ),
-				'last_updated' 	=> $theme_info->last_updated,
-				'homepage' 		=> $theme_info->homepage,
-				'download_link' => $theme_info->download_link
+				'url'				=> 'https://wordpress.org/themes/'.$slug.'/',
+				'name' 				=> $theme_info->name,
+				'slug' 				=> $slug,
+				'version' 			=> $theme_info->version,
+				'preview_url'		=> $theme_info->preview_url,
+				'author_def'		=> $theme_info->author,
+				'author' 			=> '<a href="https://profiles.wordpress.org/' . $theme_info->author . '/" target="_blanck" title="' . $theme_info->author . '">' . $theme_info->author . '</a>',
+				'screenshot_url'	=> $theme_info->screenshot_url,
+				'rating' 			=> $theme_info->rating,
+				'num_ratings' 		=> $theme_info->num_ratings,
+				'downloaded' 		=> number_format($theme_info->downloaded, 0, ',', ',' ),
+				'last_updated_mk' 	=> $theme_info->last_updated,
+				'last_updated' 		=> $theme_info->last_updated,
+				'homepage' 			=> $theme_info->homepage,
+				'download_link' 	=> $theme_info->download_link
 			);
 		}
 

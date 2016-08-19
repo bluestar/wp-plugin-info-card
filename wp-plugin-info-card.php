@@ -5,7 +5,7 @@
  * Description: WP Plugin Info Card displays plugins & themes identity cards in a beautiful box with a smooth rotation effect using WordPress.org Plugin API & WordPress.org Theme API. Dashboard widget included.
  * Author: Brice CAPOBIANCO
  * Author URI: http://b-website.com/
- * Version: 2.4.3
+ * Version: 2.5
  * Domain Path: /langs
  * Text Domain: wppic-translate
  */
@@ -23,7 +23,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * Define constants
  ***************************************************************/
 if ( !defined( 'WPPIC_VERSION' ) ) {	
-    define( 'WPPIC_VERSION', '2.4.3' );
+    define( 'WPPIC_VERSION', '2.5' );
 }
 if ( !defined( 'WPPIC_PATH' ) ) {
 	define( 'WPPIC_PATH', plugin_dir_path( __FILE__ ) ); 
@@ -58,7 +58,7 @@ $wppicDateFormat = get_option( 'date_format' );
 /***************************************************************
  * Load plugin files
  ***************************************************************/
-$wppicFiles = array( 'api','shortcode','admin','widget','ui', 'add-plugin', 'add-theme' );
+$wppicFiles = array( 'api','shortcode','admin','widget','ui', 'add-plugin', 'add-theme', 'query' );
 foreach( $wppicFiles as $wppicFile ){
 	require_once( WPPIC_PATH . 'wp-plugin-info-card-' . $wppicFile . '.php' );
 }
@@ -117,8 +117,8 @@ add_action( 'admin_head', 'wppic_add_favicon' );
  ***************************************************************/
 function wppic_delete_transients(){
 	global $wpdb;
-	if( extension_loaded( 'Memcache' ) )
-		return;
+	/*if( extension_loaded( 'Memcache' ) )
+		return;*/
 	$wppic_transients = $wpdb->get_results(
 		"SELECT option_name AS name,
 		option_value AS value FROM $wpdb->options 
@@ -149,7 +149,7 @@ add_action( 'wppic_daily_cron', 'wppic_delete_transients' );
 
 
 /***************************************************************
- * Remove Plugin settings from DB on uninstallation (= plugin deletion) 
+ * Remove plugin settings from DB on plugin deletion
  ***************************************************************/
 function wppic_uninstall() {
 	// Remove option from DB
@@ -160,10 +160,13 @@ function wppic_uninstall() {
 	wppic_delete_transients();
 }
 
-//Hooks for install
-if (function_exists( 'register_uninstall_hook' ) ) {
-	register_activation_hook( __FILE__, 'wppic_cron_activation' );
-	register_activation_hook( __FILE__, 'wppic_delete_transients' );
-	register_uninstall_hook( __FILE__, 'wppic_cron_deactivation' );
-	register_uninstall_hook( __FILE__, 'wppic_uninstall' );
+
+/***************************************************************
+ * Hooks for install & uninstall
+ ***************************************************************/
+function wppic_activation() {
+	register_uninstall_hook( __FILE__,  'wppic_uninstall' );
 }
+register_activation_hook( __FILE__, 'wppic_activation' );
+register_activation_hook( __FILE__, 'wppic_cron_activation' );
+register_activation_hook( __FILE__, 'wppic_delete_transients' );

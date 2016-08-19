@@ -1,9 +1,10 @@
 <?php
 /***************************************************************
  * $wppic_data Object contain the following values: 
- * slug, url, name, version, author, screenshot_url, rating, num_ratings, downloaded, last_updated, homepage, download_link
+ * url, name, slug, version, preview_url, author_def, author, screenshot_url, rating, num_ratings, downloaded, last_updated, homepage, description, download_link
  ***************************************************************/
 
+ 
 //ScreenShot URL
 //$image is the custom image URL if you provided it
 $banner = '';
@@ -19,12 +20,12 @@ if( !empty( $image ) ){
 ?>
 <div class="wp-pic-large" style="display: none;">
 	<div class="wp-pic-large-content">
-		<a class="wp-pic-asset-bg" href="<?php echo $wppic_data->url ?>" target="_blank" title="<?php _e( 'WordPress.org Plugin Page', 'wppic-translate' ) ?>">
+		<a class="wp-pic-asset-bg" href="<?php echo $wppic_data->url ?>" target="_blank" title="<?php _e( 'WordPress.org Theme Page', 'wppic-translate' ) ?>">
 			<?php echo $banner ?> 
 			<span class="wp-pic-asset-bg-title"><span><?php echo $wppic_data->name ?></span></span>
 		</a>
 		<div class="wp-pic-half-first">
-			<a class="wp-pic-logo" href="<?php echo $wppic_data->url ?>" <?php echo $bgImage ?> target="_blank" title="<?php _e( 'WordPress.org Plugin Page', 'wppic-translate' ) ?>"></a>
+			<a class="wp-pic-logo" href="<?php echo $wppic_data->url ?>" target="_blank" title="<?php _e( 'WordPress.org Theme Page', 'wppic-translate' ) ?>"></a>
 			<p class="wp-pic-author"><?php _e( 'Author(s):', 'wppic-translate' ) ?> <?php echo $wppic_data->author ?></p>
 			<p class="wp-pic-version"><span><?php _e( 'Current Version:', 'wppic-translate' ) ?></span> <?php echo $wppic_data->version ?></p>
 			<p class="wp-pic-updated"><span><?php _e( 'Last Updated:', 'wppic-translate' ) ?></span> <?php echo $wppic_data->last_updated ?></p>

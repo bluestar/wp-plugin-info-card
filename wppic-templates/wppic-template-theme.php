@@ -1,7 +1,7 @@
 <?php
 /***************************************************************
  * $wppic_data Object contain the following values: 
- * url, name, version, author, screenshot_url, rating, num_ratings, downloaded, last_updated, homepage, download_link
+ * url, name, slug, version, preview_url, author_def, author, screenshot_url, rating, num_ratings, downloaded, last_updated, homepage, description, download_link
  ***************************************************************/
 
 //ScreenShot URL
@@ -44,7 +44,7 @@ if( !empty( $image ) ){
 	<div class="wp-pic-face wp-pic-back">
 		<a class="wp-pic-dl-ico" href="<?php echo $wppic_data->download_link ?>" title="<?php _e( 'Direct download', 'wppic-translate' ) ?>"></a>
 		<p><a class="wp-pic-dl-link" href="<?php echo $wppic_data->download_link ?>" title="<?php _e( 'Direct download', 'wppic-translate' ) ?>"><?php echo basename($wppic_data->download_link) ?></a></p>
-		<a class="wp-pic-preview" href="https://wp-themes.com/<?php echo $wppic_data->slug ?>" title="<?php _e( 'Theme Preview', 'wppic-translate' ) ?>" target="_blank"><span><?php _e( 'Theme Preview', 'wppic-translate' ) ?></span></a>
+		<a class="wp-pic-preview" href="<?php echo $wppic_data->preview_url ?>" title="<?php _e( 'Theme Preview', 'wppic-translate' ) ?>" target="_blank"><span><?php _e( 'Theme Preview', 'wppic-translate' ) ?></span></a>
 		<p class="wp-pic-updated"><span><?php _e( 'Last Updated:', 'wppic-translate' ) ?></span> <?php echo $wppic_data->last_updated ?></p>
 		<div class="wp-pic-bottom">
 			<div class="wp-pic-bar">
