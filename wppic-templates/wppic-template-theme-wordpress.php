@@ -25,7 +25,7 @@ if( !empty( $image ) ){
 		<div class="wp-pic-theme-card-top">
 			<div class="wp-pic-theme-screenshot">
 				<?php echo $banner ?>
-				<a class="wp-pic-theme-preview" href="<?php echo $wppic_data->preview_url ?>" title="<?php _e( 'Theme Preview', 'wppic-translate' ) ?>" target="_blank"><span><?php _e( 'Theme Preview', 'wppic-translate' ) ?></span></a>
+				<a class="wp-pic-theme-preview" href="<?php echo $wppic_data->preview_url ?>" title="<?php _e( 'Theme Preview', 'wp-plugin-info-card' ) ?>" target="_blank"><span><?php _e( 'Theme Preview', 'wp-plugin-info-card' ) ?></span></a>
 				<?php echo $wppic_data->credit ?>
 			</div>
 			<h3>
@@ -35,7 +35,7 @@ if( !empty( $image ) ){
 				<span class="wp-pic-author"><?php printf( __( 'By %s' ), $wppic_data->author ) ?></span>
 			</h3>
 			<div class="wp-pic-action-links">
-				<a class="wp-pic-action-buttons" href="<?php echo $wppic_data->download_link ?>" title="<?php _e( 'Download', 'wppic-translate' ) ?>" target="_blank"><?php _e( 'Download' ) ?></a>
+				<a class="wp-pic-action-buttons" href="<?php echo $wppic_data->download_link ?>" title="<?php _e( 'Download', 'wp-plugin-info-card' ) ?>" target="_blank"><?php _e( 'Download' ) ?></a>
 			</div>	
 		</div>
 		<div class="wp-pic-theme-card-bottom">
@@ -44,10 +44,10 @@ if( !empty( $image ) ){
 				<span class="wp-pic-num-ratings" aria-hidden="true">(<?php echo number_format_i18n( $wppic_data->num_ratings ); ?>)</span>
 			</div>
 			<div class="wp-pic-column-updated">
-				<strong><?php _e( 'Last Updated:', 'wppic-translate' ) ?></strong> <?php printf( __( '%s ago' ), human_time_diff( strtotime( $wppic_data->last_updated_mk ) ) ); ?>
+				<strong><?php _e( 'Last Updated:', 'wp-plugin-info-card' ) ?></strong> <?php printf( __( '%s ago' ), human_time_diff( strtotime( $wppic_data->last_updated_mk ) ) ); ?>
 			</div>
 			<div class="wp-pic-column-downloaded">
-				<?php echo $wppic_data->downloaded ?> <?php _e( 'Downloads', 'wppic-translate' ) ?>
+				<?php echo $wppic_data->downloaded ?> <?php _e( 'Downloads', 'wp-plugin-info-card' ) ?>
 			</div>
 			<div class="wp-pic-column-version">
 				<span><?php printf( __( 'Version: %s' ), $wppic_data->version ) ?></span>
@@ -69,13 +69,13 @@ if( !empty( $image ) ){
 			<h3 class="theme-name"><?php echo $wppic_data->name ?></h3>
 
 			<div class="theme-actions">
-				<a class="button button-primary" href="<?php echo $wppic_data->download_link ?>" title="<?php _e( 'Direct download', 'wppic-translate' ) ?>"><?php esc_html_e( 'Install' ); ?></a>
+				<a class="button button-primary" href="<?php echo $wppic_data->download_link ?>" title="<?php _e( 'Direct download', 'wp-plugin-info-card' ) ?>"><?php esc_html_e( 'Install' ); ?></a>
 				<a class="button button-secondary preview install-theme-preview" href="<?php echo $wppic_data->preview_url ?>" title="<?php esc_html_e( 'Preview' ); ?>"><?php esc_html_e( 'Preview' ); ?></a>
 			</div>
 		</div>
 
 		<div class="theme-card-right">
-			<strong><?php _e( 'Last Updated:', 'wppic-translate' ) ?></strong> <?php printf( __( '%s ago' ), human_time_diff( strtotime( $wppic_data->last_updated_mk ) ) ); ?>
+			<strong><?php _e( 'Last Updated:', 'wp-plugin-info-card' ) ?></strong> <?php printf( __( '%s ago' ), human_time_diff( strtotime( $wppic_data->last_updated_mk ) ) ); ?>
 			<?php wp_star_rating( array( 'rating' => $wppic_data->rating, 'type' => 'percent', 'number' => $wppic_data->num_ratings ) ); ?>
 			<span class="num-ratings" aria-hidden="true">(<?php echo number_format_i18n( $wppic_data->num_ratings ); ?>)</span>
 

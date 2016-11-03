@@ -91,7 +91,7 @@ function wppic_widgets() {
 	if( !$listState ) {
 
 		$content .= '<div class="wp-pic-item" style="display:block;">';
-		$content .= '<span class="wp-pic-no-item"><a href="admin.php?page=' . WPPIC_ID . '">' . __( 'Nothing found, please add at least one item in the WP Plugin Info Card settings page.', 'wppic-translate' ) . '</a></span>';
+		$content .= '<span class="wp-pic-no-item"><a href="admin.php?page=' . WPPIC_ID . '">' . __( 'Nothing found, please add at least one item in the WP Plugin Info Card settings page.', 'wp-plugin-info-card' ) . '</a></span>';
 		$content .= '</div>';
 		
 	}
@@ -125,7 +125,7 @@ function wppic_widget_render( $type=NULL, $slugs=NULL ){
 			if( !$wppic_data ){
 
 				$content .= '<div class="wp-pic-item ' . $slug . '">';
-				$content .= '<span class="wp-pic-no-item">' . __( 'Item not found:', 'wppic-translate' ) . ' "' . $slug . '" ' . __( 'does not exist.', 'wppic-translate' ) . '</span>';
+				$content .= '<span class="wp-pic-no-item">' . __( 'Item not found:', 'wp-plugin-info-card' ) . ' "' . $slug . '" ' . __( 'does not exist.', 'wp-plugin-info-card' ) . '</span>';
 				$content .= '</div>';
 			
 			} else {

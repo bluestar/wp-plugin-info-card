@@ -52,7 +52,7 @@ if ( $wppic_data->active_installs >= 1000000 ) {
 				</h3>
 			</div>
 			<div class="wp-pic-action-links">
-				<a class="wp-pic-action-buttons" href="<?php echo $wppic_data->download_link ?>" title="<?php _e( 'Download', 'wppic-translate' ) ?>" target="_blank"><?php _e( 'Download' ) ?></a>
+				<a class="wp-pic-action-buttons" href="<?php echo $wppic_data->download_link ?>" title="<?php _e( 'Download', 'wp-plugin-info-card' ) ?>" target="_blank"><?php _e( 'Download' ) ?></a>
 			</div>
 			<div class="wp-pic-column-description">
 				<p><?php echo strip_tags( $wppic_data->short_description ); ?></p>
@@ -66,13 +66,13 @@ if ( $wppic_data->active_installs >= 1000000 ) {
 				<span class="wp-pic-num-ratings" aria-hidden="true">(<?php echo number_format_i18n( $wppic_data->num_ratings ); ?>)</span>
 			</div>
 			<div class="wp-pic-column-updated">
-				<strong><?php _e( 'Last Updated:', 'wppic-translate' ) ?></strong> <?php printf( __( '%s ago' ), human_time_diff( strtotime( $wppic_data->last_updated_mk ) ) ); ?>
+				<strong><?php _e( 'Last Updated:', 'wp-plugin-info-card' ) ?></strong> <?php printf( __( '%s ago' ), human_time_diff( strtotime( $wppic_data->last_updated_mk ) ) ); ?>
 			</div>
 			<div class="wp-pic-column-downloaded">
 				<?php printf( __( '%s Active Installs' ), $active_installs_text ); ?>
 			</div>
 			<div class="wp-pic-column-compatibility">
-				<span class="wp-pic-compatibility-compatible"><?php _e( 'Compatible with WordPress', 'wppic-translate' ) ?> <?php echo $wppic_data->requires ?></span>
+				<span class="wp-pic-compatibility-compatible"><?php _e( 'Compatible with WordPress', 'wp-plugin-info-card' ) ?> <?php echo $wppic_data->requires ?></span>
 			</div>
 		</div>
 	</div>

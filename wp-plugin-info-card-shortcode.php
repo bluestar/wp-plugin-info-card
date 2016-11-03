@@ -114,7 +114,7 @@ function wppic_shortcode_function( $atts, $content="" ) {
 		$wppic_data = wppic_api_parser( $type, $slug, $expiration );
 		
 		if( !$wppic_data )
-		return '<strong>' . __( 'Item not found:', 'wppic-translate' ) . ' "' . $slug . '" ' . __( 'does not exist.', 'wppic-translate' ) . '</strong>';
+		return '<strong>' . __( 'Item not found:', 'wp-plugin-info-card' ) . ' "' . $slug . '" ' . __( 'does not exist.', 'wp-plugin-info-card' ) . '</strong>';
 	
 		if( !empty( $wppic_data->$custom ) )
 		$content .= $wppic_data->$custom;
@@ -234,7 +234,7 @@ function wppic_shortcode_content( $type=NULL, $slug=NULL, $image=NULL, $expirati
 		$error = '<div class="wp-pic-flip" style="display: none;">';
 			$error .= '<div class="wp-pic-face wp-pic-front error">';
 
-				$error .=  '<span class="wp-pic-no-plugin">' . __( 'Item not found:', 'wppic-translate' ) . '</br><i>"' . $slug . '"</i></br>' . __( 'does not exist.', 'wppic-translate' ) . '</span>';
+				$error .=  '<span class="wp-pic-no-plugin">' . __( 'Item not found:', 'wp-plugin-info-card' ) . '</br><i>"' . $slug . '"</i></br>' . __( 'does not exist.', 'wp-plugin-info-card' ) . '</span>';
 				$error .=  	'<div class="monster-wrapper">
 								<div class="eye-left"></div>
 								<div class="eye-right"></div>
@@ -267,7 +267,7 @@ function wppic_shortcode_content( $type=NULL, $slug=NULL, $image=NULL, $expirati
 	$credit = '';
 	if( isset( $wppicSettings[ 'credit' ] ) && $wppicSettings[ 'credit' ] == true ){
 		$credit .= '<a class="wp-pic-credit" href="http://b-website.com/wp-plugin-info-card-for-wordpress" target="_blank" data-tooltip="';
-		$credit .= __( 'This card has been generated with WP Plugin Info Card', 'wppic-translate' );
+		$credit .= __( 'This card has been generated with WP Plugin Info Card', 'wp-plugin-info-card' );
 		$credit .= '"></a>';
 	}
 	$wppic_data->credit = $credit;

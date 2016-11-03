@@ -5,9 +5,9 @@
  * Description: WP Plugin Info Card displays plugins & themes identity cards in a beautiful box with a smooth rotation effect using WordPress.org Plugin API & WordPress.org Theme API. Dashboard widget included.
  * Author: Brice CAPOBIANCO
  * Author URI: http://b-website.com/
- * Version: 2.5
+ * Version: 2.5.1
  * Domain Path: /langs
- * Text Domain: wppic-translate
+ * Text Domain: wp-plugin-info-card
  */
 
 
@@ -23,7 +23,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * Define constants
  ***************************************************************/
 if ( !defined( 'WPPIC_VERSION' ) ) {	
-    define( 'WPPIC_VERSION', '2.5' );
+    define( 'WPPIC_VERSION', '2.5.6' );
 }
 if ( !defined( 'WPPIC_PATH' ) ) {
 	define( 'WPPIC_PATH', plugin_dir_path( __FILE__ ) ); 
@@ -69,7 +69,7 @@ foreach( $wppicFiles as $wppicFile ){
  ***************************************************************/
 function wppic_load_textdomain() {
 	$path = dirname( plugin_basename( __FILE__ ) ) . '/langs/';
-	load_plugin_textdomain( 'wppic-translate', FALSE, $path );
+	load_plugin_textdomain( 'wp-plugin-info-card', FALSE, $path );
 }
 add_action( 'init', 'wppic_load_textdomain' );
 
@@ -78,7 +78,7 @@ add_action( 'init', 'wppic_load_textdomain' );
  * Add settings link on plugin list page
  ***************************************************************/
 function wppic_settings_link( $links ) { 
-  $links[] = '<a href="' . admin_url( 'options-general.php?page=' . WPPIC_ID ) . '" title="'. __( 'WP Plugin Info Card Settings', 'wppic-translate' ) .'">' . __( 'Settings', 'wppic-translate' ) . '</a>'; 
+  $links[] = '<a href="' . admin_url( 'options-general.php?page=' . WPPIC_ID ) . '" title="'. __( 'WP Plugin Info Card Settings', 'wp-plugin-info-card' ) .'">' . __( 'Settings', 'wp-plugin-info-card' ) . '</a>'; 
   return $links; 
 }
 add_filter( 'plugin_action_links_' . WPPIC_BASE, 'wppic_settings_link' );
@@ -89,9 +89,9 @@ add_filter( 'plugin_action_links_' . WPPIC_BASE, 'wppic_settings_link' );
  ***************************************************************/
 function wppic_meta_links( $links, $file ) {
 	if ( $file === 'wp-plugin-info-card/wp-plugin-info-card.php' ) {
-		$links[] = '<a href="http://b-website.com/wp-plugin-info-card-for-wordpress" target="_blank" title="'. __( 'Documentation and examples', 'wppic-translate' ) .'"><strong>'. __( 'Documentation and examples', 'wppic-translate' ) .'</strong></a>';
-		$links[] = '<a href="http://b-website.com/category/plugins" target="_blank" title="'. __( 'More plugins by b*web', 'wppic-translate' ) .'">'. __( 'More plugins by b*web', 'wppic-translate' ) .'</a>';
-		$links[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8" target="_blank" title="' . __( 'Donate', 'wppic-translate' ) . '"><strong>' . __( 'Donate', 'wppic-translate' ) . '</strong></a>';
+		$links[] = '<a href="http://b-website.com/wp-plugin-info-card-for-wordpress" target="_blank" title="'. __( 'Documentation and examples', 'wp-plugin-info-card' ) .'"><strong>'. __( 'Documentation and examples', 'wp-plugin-info-card' ) .'</strong></a>';
+		$links[] = '<a href="http://b-website.com/category/plugins" target="_blank" title="'. __( 'More plugins by b*web', 'wp-plugin-info-card' ) .'">'. __( 'More plugins by b*web', 'wp-plugin-info-card' ) .'</a>';
+		$links[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8" target="_blank" title="' . __( 'Donate', 'wp-plugin-info-card' ) . '"><strong>' . __( 'Donate', 'wp-plugin-info-card' ) . '</strong></a>';
 	}
 	return $links;
 }

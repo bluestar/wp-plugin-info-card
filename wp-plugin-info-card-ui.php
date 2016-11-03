@@ -28,9 +28,9 @@ function wppic_add_mce_button() {
 		$mceAddParam = array(
 				'types' => array(),
 				'layouts' => array(
-					array( 'text' => __( 'Card (default)', 'wppic-translate' ), 'value' => '' ),
-					array( 'text' => __( 'Large', 'wppic-translate' ), 'value' => 'large' ),
-					array( 'text' => __( 'WordPress', 'wppic-translate' ), 'value' => 'wordpress' )
+					array( 'text' => __( 'Card (default)', 'wp-plugin-info-card' ), 'value' => '' ),
+					array( 'text' => __( 'Large', 'wp-plugin-info-card' ), 'value' => 'large' ),
+					array( 'text' => __( 'WordPress', 'wp-plugin-info-card' ), 'value' => 'wordpress' )
 				)
 
 			);
