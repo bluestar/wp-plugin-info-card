@@ -24,7 +24,7 @@ if ( !empty( $wppic_data->icons[ 'svg' ] ) ) {
 if( !empty( $image ) ){
 	$bgImage = 'style="background-image: url( ' . $image . ' );"';
 } else if( isset($icon) ) {
-	$bgImage = 'style="background-image: url(https:' . esc_attr( $icon ) . ' );"';
+	$bgImage = 'style="background-image: url(' . esc_attr( $icon ) . ' );"';
 } else {
 	$bgImage = 'data="no-image"';
 }
@@ -32,7 +32,7 @@ if( !empty( $image ) ){
 //Plugin banner
 $banner = '';
 if ( !empty( $wppic_data->banners[ 'low' ] ) ) {
-	$banner = '<img src="https:' . esc_attr( $wppic_data->banners[ 'low' ] ) . '" alt="' . $wppic_data->name . '" />';
+	$banner = '<img src="' . esc_attr( $wppic_data->banners[ 'low' ] ) . '" alt="' . $wppic_data->name . '" />';
 }
 
 

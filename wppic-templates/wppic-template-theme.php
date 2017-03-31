@@ -9,7 +9,7 @@
 if( !empty( $image ) ){
 	$bgImage = 'style="background-image: url( ' . $image . ' );"';
 } else if( !empty( $wppic_data->screenshot_url ) ){
-	$bgImage = 'style="background-image: url(https:' . esc_attr( $wppic_data->screenshot_url ) . ' );"';
+	$bgImage = 'style="background-image: url( ' . esc_attr( $wppic_data->screenshot_url ) . ' );"';
 } else {
 	$bgImage = 'data="no-image"';
 }

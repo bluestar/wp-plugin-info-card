@@ -13,7 +13,7 @@ $banner = '';
 if( !empty( $image ) ){
 	$banner = '<img src="' . $image . '" alt="' . $wppic_data->name . '" />';
 } else if( !empty( $wppic_data->screenshot_url ) ){
-	$banner = '<img src="https:' . esc_attr( $wppic_data->screenshot_url ) . '" alt="' . $wppic_data->name . '" />';
+	$banner = '<img src="' . esc_attr( $wppic_data->screenshot_url ) . '" alt="' . $wppic_data->name . '" />';
 }
 
 /***************************************************************
