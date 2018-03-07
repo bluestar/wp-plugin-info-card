@@ -3,7 +3,7 @@ Contributors: briKou
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z6YVM63739Y8
 Tags: API, plugin, card, blog, developper, design, dashboard, shortcode, ajax, WordPress, plugin API, CSS, rotate, flip card, awesome, UX, ui, showcase, theme API, themes, theme, jquery, Envato
 Requires at least: 3.7
-Tested up to: 4.7.3
+Tested up to: 4.9.4
 Stable tag: 2.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
