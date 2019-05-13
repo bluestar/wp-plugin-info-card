@@ -52,7 +52,6 @@ class WP_Plugin_Card extends Component {
 			ajax: this.props.attributes.ajax,
 			scheme: this.props.attributes.scheme,
 			layout: this.props.attributes.layout,
-			custom: this.props.attributes.custom,
 			width: this.props.attributes.width,
 		};
 	}
@@ -75,7 +74,7 @@ class WP_Plugin_Card extends Component {
 				loading: false
 			} );
 			var rest_url = wppic.rest_url + 'wppic/v1/get_html/';
-			axios.get(rest_url + `?type=${this.state.type}&slug=${this.state.slug}&align=${this.props.attributes.align}&image=${this.props.attributes.image}&containerid=${this.props.attributes.containerid}&margin=${this.props.attributes.margin}&clear=${this.props.attributes.clear}&expiration=${this.props.attributes.expiration}&ajax=${this.props.attributes.ajax}&scheme=${this.props.attributes.scheme}&layout=${this.props.attributes.layout}&custom=${this.props.attributes.custom}` ).then( ( response ) => {
+			axios.get(rest_url + `?type=${this.props.attributes.type}&slug=${this.props.attributes.slug}&align=${this.props.attributes.align}&image=${this.props.attributes.image}&containerid=${this.props.attributes.containerid}&margin=${this.props.attributes.margin}&clear=${this.props.attributes.clear}&expiration=${this.props.attributes.expiration}&ajax=${this.props.attributes.ajax}&scheme=${this.props.attributes.scheme}&layout=${this.props.attributes.layout}` ).then( ( response ) => {
 				// Now Set State
 				this.setState( {
 					html: response.data
@@ -87,8 +86,16 @@ class WP_Plugin_Card extends Component {
 
 	render() {
 		const { attributes, setAttributes } = this.props;
-		const { type, slug, loading, align, image, containerid, margin, clear, expiration, ajax, scheme, layout, custom, width} = attributes;
+		const { type, slug, loading, align, image, containerid, margin, clear, expiration, ajax, scheme, layout, width} = attributes;
 		let htmlToReactParser = new HtmlToReactParser();
+
+		const resetSelect = [
+			{
+				icon: 'update',
+				title: __( 'Reset', 'wp-plugin-info-card' ),
+				onClick: () => this.setState( { loading: true } )
+			}
+		];
 		const alignOptions = [
 			{ value: 'left', label: __('Left', 'wp-plugin-info-card' ) },
 			{ value: 'center', label: __('Center', 'wp-plugin-info-card' ) },
@@ -120,19 +127,6 @@ class WP_Plugin_Card extends Component {
 			{ value: 'card', label: __('Card', 'wp-plugin-info-card' ) },
 			{ value: 'large', label: __('Large', 'wp-plugin-info-card' ) },
 			{ value: 'wordpress', label: __('WordPress', 'wp-plugin-info-card' ) }
-		];
-		const customPluginOptions = [
-			{ value: '', label: __('None', 'wp-plugin-info-card' ) },
-			{ value: 'url', label: __('URL', 'wp-plugin-info-card' ) },
-			{ value: 'name', label: __('Name', 'wp-plugin-info-card' ) },
-			{ value: 'version', label: __('Version', 'wp-plugin-info-card' ) },
-			{ value: 'author', label: __('Author', 'wp-plugin-info-card' ) },
-			{ value: 'requires', label: __('Requires', 'wp-plugin-info-card' ) },
-			{ value: 'rating', label: __('Ratings', 'wp-plugin-info-card' ) },
-			{ value: 'num_ratings', label: __('Number of Ratings', 'wp-plugin-info-card' ) },
-			{ value: 'active_installs', label: __('Active Installs', 'wp-plugin-info-card' ) },
-			{ value: 'last_updated', label: __('Last Updated', 'wp-plugin-info-card' ) },
-			{ value: 'download_link', label: __('Download Link', 'wp-plugin-info-card' ) },
 		];
 		const customThemeOptions = [
 			{ value: '', label: __('None', 'wp-plugin-info-card' ) },
@@ -167,28 +161,6 @@ class WP_Plugin_Card extends Component {
 							value={ layout }
 							onChange={ ( value ) => { this.props.setAttributes( { layout: value } ); this.props.attributes.layout = value; this.setState( { layout: value}); this.pluginOnClick(value); } }
 					/>
-					{'theme' === type &&
-						<Fragment>
-							<SelectControl
-									label={ __( 'Custom', 'wp-plugin-info-card' ) }
-									options={ customThemeOptions }
-									value={ custom }
-									onChange={ ( value ) => { this.props.setAttributes( { custom: value } ); this.props.attributes.custom = value; this.setState( { custom: value}); this.pluginOnClick(value); } }
-							/>
-
-						</Fragment>
-					}
-					{'plugin' === type &&
-						<Fragment>
-							<SelectControl
-									label={ __( 'Custom', 'wp-plugin-info-card' ) }
-									options={ customPluginOptions }
-									value={ custom }
-									onChange={ ( value ) => { this.props.setAttributes( { custom: value } ); this.props.attributes.custom = value; this.setState( { custom: value}); this.pluginOnClick(value); } }
-							/>
-
-						</Fragment>
-					}
 					<SelectControl
 							label={ __( 'Width', 'wp-plugin-info-card' ) }
 							options={ widthOptions }
@@ -278,6 +250,9 @@ class WP_Plugin_Card extends Component {
 					{!this.state.loading &&
 						<Fragment>
 							{inspectorControls}
+							<BlockControls>
+								<Toolbar controls={ resetSelect } />
+							</BlockControls>
 							<div className={'' != width ? 'wp-pic-full-width' : ''}>
 								{htmlToReactParser.parse(this.state.html)}
 							</div>

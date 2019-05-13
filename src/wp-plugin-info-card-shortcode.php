@@ -58,6 +58,10 @@ function wppic_register_route() {
 		'methods' => 'GET',
 		'callback' => 'wppic_get_shortcode',
 	));
+	register_rest_route('wppic/v1', '/get_query', array(
+		'methods' => 'GET',
+		'callback' => 'wppic_get_query_shortcode',
+	));
 }
 add_action('rest_api_init', 'wppic_register_route' );
 
@@ -74,9 +78,41 @@ function wppic_get_shortcode() {
 		'ajax' => isset( $_GET['ajax'] ) ? $_GET['ajax'] : '',
 		'scheme' => isset( $_GET['scheme'] ) ? $_GET['scheme'] : '',
 		'layout' => isset( $_GET['layout'] ) ? $_GET['layout'] : '',
-		'custom' => isset( $_GET['custom'] ) ? $_GET['custom'] : ''
 	);
 	die(wppic_shortcode_function($attrs));
+}
+
+function wppic_get_query_shortcode() {
+	$attrs = array(
+		'cols' => $_GET['cols'],
+		'per_page' => $_GET['per_page'],
+		'type' => $_GET['type'],
+		'image' => isset( $_GET['image'] ) ? $_GET['image'] : '',
+		'align' => isset( $_GET['align'] ) ? $_GET['align'] : '',
+		'containerid' => isset( $_GET['containerid'] ) ? $_GET['containerid'] : '',
+		'margin' => isset( $_GET['margin'] ) ? $_GET['margin'] : '',
+		'clear' => isset( $_GET['clear'] ) ? $_GET['clear'] : '',
+		'expiration' => isset( $_GET['expiration'] ) ? $_GET['expiration'] : '',
+		'ajax' => isset( $_GET['ajax'] ) ? $_GET['ajax'] : '',
+		'scheme' => isset( $_GET['scheme'] ) ? $_GET['scheme'] : '',
+		'layout' => isset( $_GET['layout'] ) ? $_GET['layout'] : '',
+	);
+	if ( ! empty( $_GET['browse'] ) ) {
+		$attrs['browse'] = $_GET['browse'];
+	}
+	if ( ! empty( $_GET['search'] ) ) {
+		$attrs['search'] = $_GET['search'];
+	}
+	if ( ! empty( $_GET['tag'] ) ) {
+		$attrs['tag'] = $_GET['tag'];
+	}
+	if ( ! empty( $_GET['user'] ) ) {
+		$attrs['user'] = $_GET['user'];
+	}
+	if ( ! empty( $_GET['author'] ) ) {
+		$attrs['author'] = $_GET['author'];
+	}
+	die(wppic_shortcode_query_function($attrs));
 }
 
 /***************************************************************
