@@ -2,8 +2,8 @@
 Contributors: briKou, ronalfy
 Tags: API, plugin, card, theme, block, blocks, gutenberg
 Requires at least: 3.7
-Tested up to: 5.2
-Stable tag: 3.1.16
+Tested up to: 5.3
+Stable tag: 3.1.20
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,10 @@ WPPIC displays plugins & themes data in a beautiful box with a smooth rotation e
 [youtube https://www.youtube.com/watch?v=8eKDCEoXGKU&rel=0]
 
 = How does it work? =
+
+This thirteen minute video gives you an extensive overview on how WP Plugin Info Card works.
+
+[youtube https://www.youtube.com/watch?v=aPcU27-R6lU&rel=0]
 
 WP Plugin Info Card lets you display plugins & themes identity cards in a beautiful box with a smooth 3D rotation effect, or in a more large and responsive layout.
 
@@ -43,14 +47,12 @@ This plugin uses the TinyMCE API to improve UI and make inserting shortcodes eas
 [CHECK OUT THE DEMO](https://mediaron.com/wp-plugin-info-card/ "Try It!")
 
 
-
-
 = [wp-pic] Shortcode parameters =
 
 * **type:** plugin, theme (default: plugin)
 * **slug:** plugin slug name - Please refer to the plugin/theme URL on wordpress.org to determine its slug: https://wordpress.org/plugins/THE-SLUG/
-* **layout:** template layout to use - Default is "card" so you may leave this parameter empty. Available layouts are: card, large & wordpress (default: empty)
-* **scheme:** card color scheme: scheme1 to scheme10 (default: default color scheme defined in admin)
+* **layout:** template layout to use - Default is "card" so you may leave this parameter empty. Available layouts are: card, large, wordpress, and flex (default: empty)
+* **scheme:** card color scheme: scheme1 to scheme12 (default: default color scheme defined in admin)
 * **image:** image url to replace the default image or logo(default: empty)
 * **align:** center, left, right (default: empty)
 * **containerid:** custom div id, may be used for anchor (default: wp-pic-PLUGIN-NAME)
@@ -186,6 +188,14 @@ This video shows you how:
 
 
 == Changelog ==
+
+= 3.1.20 =
+* Released 2020-01-30
+* Improved Gutenberg block loading and edit screens.
+* Blocks are full-width by default.
+* Added block previews to blocks.
+* New multi mode to allow multiple plugin output using one shortcode or one block.
+* Added two new color schemes.
 
 = 3.1.16 =
 * Released 2019-06-23
@@ -453,20 +463,5 @@ This video shows you how:
 
 == Upgrade Notice ==
 
-= 3.1.16 =
-* Gutenberg block improvements. New color scheme (Scheme 12) for Magenta.
-
-= 3.1.15 =
-Added layout options to Gutenberg block. Code cleanup and fixes.
-
-= 3.1.12 =
-Documentation updates. New scheme - Dark mode.
-
-= 3.1.11 =
-Fixing card styles not showing properly.
-
-= 3.1.10 =
-Documentation update.
-
-= 3.1.9 =
-Gutenberg fixes and enhancements. New FLEX layout option in Gutenberg and the shortcodes.
+= 3.1.20 =
+Improved Gutenberg block loading and edit screens. Blocks are full-width by default. Added block previews to blocks. New multi mode to output multiple plugins with one shortcode. Two new color schemes.
